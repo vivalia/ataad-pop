@@ -1,0 +1,42 @@
+# Clinical data and patient-level outputs (never commit)
+data/**
+!data/README.md
+artifacts/**
+predictions/**
+outputs/**
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.sav
+*.dta
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs and secrets
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+

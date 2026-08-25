@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "ATAAD-POP: Transportability-aware operative-decision modeling"
+type: software
+version: 0.1.0
+date-released: 2026-08-25
+license: MIT
+authors:
+  - family-names: Xie
+    given-names: Wen
+  - family-names: Qiu
+    given-names: Hailong
+  - family-names: Yu
+    given-names: Changjiang
+  - family-names: Sun
+    given-names: Tucheng
+  - family-names: Xu
+    given-names: Xiaowei
+  - family-names: Tong
+    given-names: Guang
+repository-code: "https://github.com/vivalia/ataad-pop"
+keywords:
+  - acute type A aortic dissection
+  - transportability
+  - multiple imputation
+  - clinical decision modeling
