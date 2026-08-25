@@ -6,7 +6,6 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 
-
 PROHIBITED_SUFFIXES = {".xlsx", ".xls", ".parquet", ".feather", ".sav", ".dta"}
 PROHIBITED_PATH_PARTS = {"predictions", "patient-level", "patient_level", "raw-data", "raw_data"}
 DIRECT_IDENTIFIER_COLUMNS = {

@@ -29,7 +29,7 @@ class AnalysisConfig:
     fixed_c: float = 0.01
 
     @classmethod
-    def from_environment(cls) -> "AnalysisConfig":
+    def from_environment(cls) -> AnalysisConfig:
         root = repository_root()
         return cls(
             data_path=Path(os.getenv("ATAAD_POP_DATA", root / "data" / "TAAD_new1.xlsx")),
