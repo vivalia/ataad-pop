@@ -3,7 +3,6 @@ from pathlib import Path
 from ataad_pop.schema import derive_bentall, load_feature_metadata, validate_input
 from ataad_pop.synthetic import generate_synthetic
 
-
 ROOT = Path(__file__).resolve().parents[1]
 METADATA = ROOT / "config" / "feature_metadata.csv"
 
