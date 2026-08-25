@@ -1,0 +1,4 @@
+Task,Manuscript_role,Random_OOF_phenotype_AUROC,Cross_surgeon_phenotype_AUROC,Rolling_year_phenotype_AUROC,Random_OOF_practice_AUROC,Selective_AUROC_at_60pct,Full_coverage_AUROC_for_selective_source,Interpretation
+Bentall,Primary portable decision phenotype,0.8175566474678121,0.8110214441443493,0.8157719156733289,0.5579423058149751,0.8531857279388338,0.8110214441443493,Portable signal with clinically usable uncertainty triage; confirmatory endpoint.
+Arch_Fourbranch,Practice-shift shortcut case,0.6975636007827789,0.2102609262883235,,0.9778587736464448,,,Apparent random-split predictability is dominated by practice context and fails transportability.
+Planned_CABG,Rare-task negative control,0.7122069523039611,0.7019964148887561,,0.5344891216477452,0.5853958432492464,0.70133738708657,Rare endpoint where uncertainty selection degrades ranking; retained as a negative control.
