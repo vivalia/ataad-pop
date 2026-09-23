@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pandas as pd
+
 from ataad_pop.schema import derive_bentall, load_feature_metadata, validate_input
 from ataad_pop.synthetic import generate_synthetic
 
@@ -22,3 +24,29 @@ def test_synthetic_data_are_deterministic():
     right = generate_synthetic(METADATA, n=120, seed=31)
     assert left.equals(right)
 
+
+def test_validation_ignores_metadata_and_input_column_whitespace(tmp_path: Path):
+    metadata = pd.DataFrame(
+        {
+            " Variable ": [" Age "],
+            " Domain ": ["phenotype"],
+            " Imputation_type ": ["continuous"],
+            " Missing_indicator_for_sensitivity ": [False],
+        }
+    )
+    metadata_path = tmp_path / "metadata.csv"
+    metadata.to_csv(metadata_path, index=False)
+
+    loaded = load_feature_metadata(metadata_path)
+    frame = pd.DataFrame(
+        {
+            " Date_of_surgery ": ["2024-01-01", "2024-01-02"],
+            " Surgeon ": [1, 2],
+            " Missingctimage ": [0, 0],
+            " Bentall_mechanic_valve ": [1, 0],
+            " Bentall_bio_valve ": [0, 1],
+            " Age ": [50, 60],
+        }
+    )
+
+    assert validate_input(frame, loaded) == []

@@ -17,8 +17,15 @@ CORE_COLUMNS = {
 }
 
 
+def _normalize_column_names(frame: pd.DataFrame) -> pd.DataFrame:
+    """Return a copy with whitespace removed from column names."""
+    normalized = frame.copy()
+    normalized.columns = normalized.columns.astype(str).str.strip()
+    return normalized
+
+
 def load_feature_metadata(path: Path) -> pd.DataFrame:
-    metadata = pd.read_csv(path)
+    metadata = _normalize_column_names(pd.read_csv(path))
     required = {
         "Variable",
         "Domain",
@@ -28,6 +35,8 @@ def load_feature_metadata(path: Path) -> pd.DataFrame:
     missing = required.difference(metadata.columns)
     if missing:
         raise ValueError(f"Feature metadata missing columns: {sorted(missing)}")
+
+    metadata["Variable"] = metadata["Variable"].astype(str).str.strip()
     if metadata["Variable"].duplicated().any():
         duplicates = metadata.loc[metadata["Variable"].duplicated(), "Variable"].tolist()
         raise ValueError(f"Duplicate feature metadata entries: {duplicates}")
@@ -44,26 +53,28 @@ def read_table(path: Path, sheet_name: str = "main") -> pd.DataFrame:
             frame = pd.read_excel(path, sheet_name=sheet_name)
     else:
         raise ValueError("Input must be CSV, XLSX, or XLS")
-    frame.columns = frame.columns.astype(str).str.strip()
-    return frame
+    return _normalize_column_names(frame)
 
 
 def validate_input(frame: pd.DataFrame, metadata: pd.DataFrame) -> list[str]:
     issues: list[str] = []
-    missing_core = sorted(CORE_COLUMNS.difference(frame.columns))
+    columns = {str(column).strip() for column in frame.columns}
+    missing_core = sorted(CORE_COLUMNS.difference(columns))
     if missing_core:
         issues.append(f"Missing core columns: {missing_core}")
-    candidate_features = metadata["Variable"].astype(str).tolist()
-    missing_features = sorted(set(candidate_features).difference(frame.columns))
+
+    candidate_features = {str(value).strip() for value in metadata["Variable"]}
+    missing_features = sorted(candidate_features.difference(columns))
     if missing_features:
         issues.append(f"Missing candidate features ({len(missing_features)}): {missing_features}")
-    if "Surgeon" in frame:
+
+    if "Surgeon" in columns:
         surgeon = pd.to_numeric(frame["Surgeon"], errors="coerce")
         if surgeon.notna().sum() == 0:
             issues.append("Surgeon contains no numeric values")
         elif surgeon.dropna().nunique() < 2:
             issues.append("At least two surgeon environments are required")
-    if "Date_of_surgery" in frame:
+    if "Date_of_surgery" in columns:
         dates = pd.to_datetime(frame["Date_of_surgery"], errors="coerce")
         if dates.notna().sum() == 0:
             issues.append("Date_of_surgery contains no parseable dates")
@@ -74,4 +85,3 @@ def derive_bentall(frame: pd.DataFrame) -> pd.Series:
     mech = pd.to_numeric(frame.get("Bentall_mechanic_valve"), errors="coerce").fillna(0)
     bio = pd.to_numeric(frame.get("Bentall_bio_valve"), errors="coerce").fillna(0)
     return ((mech == 1) | (bio == 1)).astype(np.int8)
-
