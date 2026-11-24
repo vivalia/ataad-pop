@@ -10,6 +10,9 @@ outputs/**
 *.feather
 *.sav
 *.dta
+*.csv
+!/config/feature_metadata.csv
+!/results/aggregated/**/*.csv
 
 # Python
 __pycache__/
@@ -17,6 +20,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.ipynb_checkpoints/
 .coverage
 htmlcov/
 .venv/
@@ -27,6 +31,7 @@ build/
 
 # Editors and operating systems
 .DS_Store
+Thumbs.db
 .idea/
 .vscode/
 *.swp
@@ -39,4 +44,20 @@ build/
 !.env.example
 *.pem
 *.key
+
+# Local AI assistant files
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.cursorrules
+.cursor/
+/.github/copilot-instructions.md
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.synctex.gz
 
