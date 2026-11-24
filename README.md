@@ -91,6 +91,10 @@ Never open a pull request containing raw records, row identifiers, free text, da
 
 ## Reproducibility
 
+See [Figure 2 and the three-task POP audit](docs/FIGURE2_TASK_AUDIT.md) for a
+figure build from public aggregates and a synthetic end-to-end example.
+The revised common-pipeline comparison is separate from frozen Bentall validation.
+
 The confirmatory seed is `20260814`. The full run order, leakage-control contract, expected artifacts, and frozen interpretation boundaries are documented in [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md). Aggregate manuscript results are retained under `results/aggregated/`; patient-level predictions are intentionally excluded.
 
 ## Citation
