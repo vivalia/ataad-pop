@@ -1,0 +1,10 @@
+Task,Scheme,Model,AUROC
+Bentall,RANDOM_OOF,Phenotype_only,0.8175566474678121
+Bentall,RANDOM_OOF,Practice_only_audit,0.5579423058149751
+Bentall,LEAVE_ONE_SURGEON_OUT,Phenotype_only,0.7934143590077337
+Arch_Fourbranch,RANDOM_OOF,Phenotype_only,0.6975636007827789
+Arch_Fourbranch,RANDOM_OOF,Practice_only_audit,0.9778587736464449
+Arch_Fourbranch,LEAVE_ONE_SURGEON_OUT,Phenotype_only,0.21026092628832355
+Planned_CABG,RANDOM_OOF,Phenotype_only,0.7122069523039611
+Planned_CABG,RANDOM_OOF,Practice_only_audit,0.5344891216477452
+Planned_CABG,LEAVE_ONE_SURGEON_OUT,Phenotype_only,0.7019964148887561
