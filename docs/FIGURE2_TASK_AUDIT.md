@@ -3,8 +3,8 @@
 The revised figure compares random-split and leave-one-surgeon-out results using
 the same exploratory learner for all three tasks. Bentall LOSO AUROC is 0.793 in
 this audit; 0.811 is the separate, frozen 20-imputation result and is not a point
-in the revised figure. The original mixed-pipeline `task_triage.csv` is retained
-for version history. CABG is an indication-coded proxy, not adjudicated timing.
+in the revised figure. Use `task_triage_common_pipeline.csv` for Figure 2.
+CABG is an indication-coded proxy, not adjudicated timing.
 
 ## Render the manuscript figure without patient data
 
